@@ -6,29 +6,25 @@ Physical constants, including cosmological parameters, all in SI units.
 Created: Dec 2023
 Author: Bradley March
 """
-import numpy as np
-from scipy.constants import c, G, hbar, parsec as pc
+from math import pi
 
-# Distance measures (parsecs)
+# Physical constants
+c = 299792458  # speed of light
+G = 6.6743e-11  # gravitational constant
+
+# Distance measures
+pc = 3.08567758e+16  # parsec
 kpc, Mpc = pc * 1e3, pc * 1e6
 
-# Solar parameters
-M_sun = 1.9885e+30  # Solar mass
-logM_sun = np.log10(M_sun)
-R_sun = 695700 * 1e3  # Solar radius
-L_sun = 3.846e+26  # Solar luminosity
-Mag_sun = 4.83  # Solar absolute magnitude
-
-# Reduced Planck units
-M_pl = np.sqrt(hbar * c / (8*np.pi*G))
-L_pl = np.sqrt(hbar * 8*np.pi*G / c**3)
+# Mass measures
+M_sun = 1.9885e+30  # solar mass
 
 # Cosmological parameters
 h = 0.7  # Hubble factor
 H0 = h * 100.0 * 1000.0 / Mpc  # Hubble constant
 omega_m = 0.3  # matter density parameter
 omega_L = 1 - omega_m  # cosmological constant density parameter
-rho_c = 3.0 * H0**2 / (8.0 * np.pi * G)  # critical density
+rho_c = 3.0 * H0**2 / (8.0 * pi * G)  # critical density
 rho_m = rho_c * omega_m  # mean cosmic matter density
 rho_L = rho_c * omega_L  # cosmological constant density
 R0 = 3 * omega_m * H0**2 * \
