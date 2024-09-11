@@ -9,8 +9,6 @@ Author: Bradley March
 """
 # %% Preamble
 import numpy as np
-# https://pypi.org/project/pynverse/ (0.1.4.6)
-from pynverse import inversefunc
 from constants import pc, kpc, Mpc, h, M_sun, rho_c
 
 # define galaxy profile constants
@@ -45,34 +43,6 @@ def virial_mass_to_stellar_mass(virial_mass: float,
     denominator = (virial_mass / M1)**(-beta) + (virial_mass / M1)**(gamma)
     stellar_mass = numerator / denominator
     return stellar_mass
-
-
-def stellar_mass_to_virial_mass(stellar_mass: float,
-                                logM1: float = 11.590, N: float = 0.0351,
-                                beta: float = 1.376, gamma: float = 0.608
-                                ) -> float:
-    """
-    Inverse of Stellar-Halo Mass Relation (SHMR). 
-    [Equation 2 in Moster, Naab and White (2012), 
-    parameters from Table 3.]
-
-    Parameters:
-    stellar_mass (float): The stellar mass of the galaxy.
-    logM1 (float): The logarithm of the characteristic mass.
-    N (float): The normalisation factor.
-    beta (float): The low-mass slope.
-    gamma (float): The high-mass slope.
-
-    Returns:
-    float: The virial mass of the halo
-    """
-    inverse_virial_mass2stellar_mass = inversefunc(
-        virial_mass_to_stellar_mass,
-        args=(logM1, N, beta, gamma),
-        domain=[M_sun, 1e30 * M_sun],
-        accuracy=-int(np.log10(1e6*M_sun)))
-    virial_mass = inverse_virial_mass2stellar_mass(stellar_mass)
-    return virial_mass
 
 
 # %% Dark matter parameter pipeline functions
