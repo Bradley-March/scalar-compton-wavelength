@@ -238,16 +238,16 @@ Lcscr = compt.calc_screened_Compton_wavelength(fR0,
 # plot results
 asp = 3/2
 fig, ax = plt.subplots(figsize=(size, size/asp))
-ax.plot(r/kpc, Lc/kpc, color=cmap(0.7),
+ax.plot(r/kpc, Lc/pc, color=cmap(0.7),
         linestyle='-', label='$\lambda_\mathrm{C}$')
-ax.plot(r/kpc, Lcscr/kpc, color=cmap(0.7), linestyle='--',
+ax.plot(r/kpc, Lcscr/pc, color=cmap(0.7), linestyle='--',
         label='$\lambda_\mathrm{C}^\mathrm{scr}$')
-ax.plot(r/kpc, sep/kpc, color=cmap(0.2), linestyle='-.', label='S')
-ax.set_ylabel("Length Scale [kpc]")
+ax.plot(r/kpc, sep/pc, color=cmap(0.2), linestyle='-.', label='S')
 ax.set_xlabel("Galactocentric Radius [kpc]")
+ax.set_ylabel("Length Scale [pc]")
 ax.set_xscale('log')
 ax.set_yscale('log')
-ax.set_ylim(0.5*Lcscr.min()/kpc, 2*Lcscr.max()/kpc)
+ax.set_ylim(0.5*Lcscr.min()/pc, 2*Lcscr.max()/pc)
 ax.legend(loc='lower right')
 fig.tight_layout()
 
